@@ -1,0 +1,32 @@
+.categories{
+   ul{
+      display: flex;
+      gap: 10px;
+      align-items: center;
+
+      li{
+         border-radius: 20px;
+         // border: 2px solid black;
+         background-color: rgba(153, 152, 152, 0.205);
+         padding: 7px 14px;
+         font-weight: 700;
+         cursor: pointer;
+         transition: background-color 0.1s ease-in-out;
+
+         &:hover{
+            background-color: black;
+            color: white;
+         }
+
+         &.active{
+            background-color: black;
+            color: white;
+         }
+      }
+
+      @media (max-width: 540px) {
+         max-width: calc(100% - 40px);
+         overflow-x: scroll;
+      }
+   }
+}

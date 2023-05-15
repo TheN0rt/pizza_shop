@@ -1,0 +1,107 @@
+@import './_cartBlock';
+
+.cart-wrapper{
+
+   .cart-container{
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+
+      .cart-top{
+         display: flex;
+         justify-content: space-around;
+         align-items: center;
+
+         h1{
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+         }
+
+         & > p{
+            display: flex;
+            font-size: 14px;
+            align-items: center;
+            gap: 10px;
+            color: gray;
+            cursor: pointer;
+         }
+      }
+
+      .cart-center{
+         display: flex;
+         flex-direction: column;
+         gap: 20px;
+      }
+
+      .cart-bottom{
+         display: flex;
+         flex-direction: column;
+         gap: 40px;
+
+         .cart-summary{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            font-size: 20px;
+
+            & > p{
+               display: flex;
+               align-items: center;
+               gap: 10px;
+
+               .cart-total-items{
+                  font-weight: 700;
+               }
+
+               .total-price{
+                  font-weight: 700;
+                  color: orangered;
+               }
+            }
+         }
+
+         .cart-btn-block{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+
+            button{
+               border-radius: 20px;
+               padding: 8px;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               font-size: 16px;
+               font-weight: 700;
+               cursor: pointer;
+            }
+
+            .back{
+               display: flex;
+               align-items: center;
+               gap: 5px;
+               background-color: transparent;
+               border: 2px solid black;
+
+               &:hover{
+                  background-color: black;
+                  color: white;
+               }
+            }
+
+            .buy{
+               border: 2px solid orangered;
+               background-color: orangered;
+               color: white;
+
+               &:hover{
+                  background-color: transparent;
+                  color: orangered;
+               }
+            }
+         }
+      }
+   }
+}

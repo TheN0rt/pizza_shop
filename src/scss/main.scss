@@ -1,0 +1,38 @@
+@import './mixins';
+@import './components/app';
+@import './components/header';
+@import './components/menu';
+@import './components/categories';
+@import './components/sort';
+@import './components/search';
+@import './components/item';
+@import './components/cart';
+
+*{
+   padding: 0;
+   margin: 0;
+}
+
+a{
+   text-decoration: none;
+}
+
+ul{
+   list-style: none;
+}
+
+html, body{
+   width: 100vw;
+   height: 100vh;
+   overflow-x: hidden;
+}
+
+@mixin noselect {
+   -webkit-touch-callout: none; /* iOS Safari */
+   -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+   -moz-user-select: none; /* Old versions of Firefox */
+   -ms-user-select: none; /* Internet Explorer/Edge */
+   user-select: none; /* Non-prefixed version, currently
+                                   supported by Chrome, Opera and Firefox */
+ }

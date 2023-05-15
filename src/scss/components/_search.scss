@@ -1,0 +1,32 @@
+.search-wrapper{
+   border: 1px solid gray;
+   border-radius: 10px;
+   height: 20px;
+   padding: 5px 10px;
+   // max-width: 40%;
+   display: flex;
+   align-items: center;
+   gap: 10px;
+
+   input{
+      outline: none;
+      border: none;
+
+      &::placeholder{
+         color: gray;
+      }
+   }
+
+   .icon{
+      cursor: pointer;
+      color: gray;
+
+      &:hover{
+         color: black;
+      }
+   }
+
+   // @media (max-width: 935px) {
+   //    margin: 0 auto;
+   // }
+}

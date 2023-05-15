@@ -1,0 +1,20 @@
+.app-wrapper{
+   background-color: rgba(255, 123, 0, 0.61);
+   min-height: 100vh;
+   padding: 50px 0;
+
+   .app-container{
+      background-color: white;
+      width: calc(100% - 100px);
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      padding: 20px 30px;
+      border-radius: 10px;
+      height: 100%;
+      max-width: 1400px;
+   }
+}
+
+
