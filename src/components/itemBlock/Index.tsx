@@ -1,16 +1,31 @@
 import React, { useState } from 'react'
-import { addToCart } from '../../redux/slices/cartSlice'
+import { CartItem, addToCart } from '../../redux/slices/cartSlice'
 import { useDispatch } from 'react-redux'
+import { useAppDispatch } from '../../redux/store'
 
-const typeList = ["Тонкое", "Традиционное"]
+const typeList: string[] = ["Тонкое", "Традиционное"]
 
-const Index = ({data}) => {
+type DataProps = {
+   category: number,
+   id: number,
+   price: number,
+   title: string, 
+   imageUrl: string, 
+   types: number[], 
+   sizes: number[],
+}
+
+type Props = {
+   data: DataProps
+}
+
+const Index: React.FC<Props> = ({data}) => {
   const [selectedType, setSelectedType] = useState(data.types[0])
   const [selectedSize, setSelectedSize] = useState(data.sizes[0])
 
   const {id, title, imageUrl, price} = data
 
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
   const addClickHandler = () => {
       const item = {
@@ -20,7 +35,7 @@ const Index = ({data}) => {
          imageUrl,
          type: typeList[selectedType],
          size: selectedSize
-      }
+      } as CartItem
       dispatch(addToCart(item))
   }
 

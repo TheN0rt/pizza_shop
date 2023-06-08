@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faAngleLeft, faCartShopping, faTrashCan} from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
@@ -6,13 +6,32 @@ import CartItemBlock from '../components/CartItemBlock'
 import EmptyCart from '../components/emptyCart/EmptyCart'
 import { useDispatch, useSelector } from 'react-redux'
 import { clearItems } from '../redux/slices/cartSlice'
+import { RootState } from '../redux/store'
 
-const Cart = () => {
-  const items = useSelector(state => state.cartReducer.items)
+type itemType = {
+  count: number,
+  id: number,
+  price: number,
+  title: string, 
+  imageUrl: string, 
+  type: string, 
+  size: number,
+}
+
+const Cart: React.FC = () => {
+  const items = useSelector((state: RootState) => state.cartReducer.items)
   const dispatch = useDispatch()
+  const isMounted = useRef(false)
 
-  const totalCountItems = items.reduce((sum, item) => sum + item.count, 0)
-  const totalPrice = items.reduce((sum, item) => sum + item.price * item.count, 0)
+  const totalCountItems = items.reduce((sum: number, item: itemType) => sum + item.count, 0)
+  const totalPrice = items.reduce((sum: number, item: itemType) => sum + item.price * item.count, 0)
+
+  useEffect(() => {
+    if(isMounted.current){
+      localStorage.setItem('cart', JSON.stringify(items))
+    }
+    isMounted.current = true
+  }, [items])
 
   return (
     <div className='cart-wrapper'>
@@ -29,7 +48,7 @@ const Cart = () => {
           </p>
         </div>
         <div className="cart-center">
-          {items.map((e,i) => (
+          {items.map((e: itemType,i:number) => (
             <CartItemBlock key={i} data={e}/>
           ))}
         </div>

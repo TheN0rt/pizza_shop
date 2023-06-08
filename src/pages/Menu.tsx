@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import qs from 'qs'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { setFilter } from '../redux/slices/filterSlice'
 import { fetchPizzas } from '../redux/slices/menuSlice'
@@ -8,6 +8,7 @@ import Categories from '../components/Categories'
 import Sort from '../components/Sort'
 import Skeleton from '../components/itemBlock/Skeleton'
 import Item from '../components/itemBlock/Index'
+import { RootState, useAppDispatch } from '../redux/store'
 
 type SortItem = {
   name: string,
@@ -50,14 +51,14 @@ const sortList: SortItem[] = [
 ]
 
 const Menu: React.FC = () => {
-  const {items, status} = useSelector(state => state.menuReducer)
+  const {items, status} = useSelector((state: RootState) => state.menuReducer)
 
   const isSearch = useRef(false)
   const isMounted = useRef(false)
   
-  const { categoryId, sortId } = useSelector(state => state.filterReducer)
-  const searchValue = useSelector(state => state.searchReducer.value)
-  const dispatch = useDispatch()
+  const { categoryId, sortId } = useSelector((state: RootState) => state.filterReducer)
+  const searchValue = useSelector((state: RootState) => state.searchReducer.value)
+  const dispatch = useAppDispatch()
 
   const navigate = useNavigate()
 
@@ -97,11 +98,11 @@ const Menu: React.FC = () => {
   useEffect(() => {
     if(window.location.search){
       const params = qs.parse(window.location.search.substring(1)) 
-      const sort  = sortList.findIndex((obj) => obj.sortProperty === params.sortProperty && obj.order === params.order)
+      const sort: number  = sortList.findIndex((obj) => obj.sortProperty === params.sortProperty && obj.order === params.order)
       
       dispatch(setFilter({
-        ...params,
-        sortId: sort
+        sortId: sort,
+        categoryId: Number(params?.categoryId)
       }))
 
       isSearch.current = true
@@ -132,8 +133,8 @@ const Menu: React.FC = () => {
       :
       <div className="menu-container">
           {status === 'loading'
-            ? [...new Array(6)].map((_, i) => <Skeleton key={i}/>) 
-            :  items.map((e,i) => (<Item key={i} data={e}/>))
+            ? [...new Array(6)].map((_, i:number) => <Skeleton key={i}/>) 
+            :  items.map((e ,i:number) => (<Item key={i} data={e}/>))
           }
       </div>
       }

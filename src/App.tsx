@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "./components/Header.tsx";
-import Menu from "./pages/Menu.tsx";
+import Header from "./components/Header";
+import Menu from "./pages/Menu";
 import Cart from './pages/Cart'
 import { Routes, Route } from 'react-router-dom'
 import NotFound from "./pages/NotFound";

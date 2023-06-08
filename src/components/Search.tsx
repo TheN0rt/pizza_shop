@@ -32,7 +32,7 @@ const Search: React.FC = () => {
     <div className='search-wrapper'>
       <FontAwesomeIcon icon={faSearch} className='icon'/>
       <input type="text" ref={inputRef} placeholder='Найти...' value={searchValue} 
-      onChange={(e) => onChangeInput(e.target.value)}/>
+      onChange={(e:React.ChangeEvent<HTMLInputElement>) => onChangeInput(e.target.value)}/>
       <FontAwesomeIcon icon={faXmark} className='icon' onClick={onClickClear}/>
     </div>
   )

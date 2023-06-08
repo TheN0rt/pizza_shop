@@ -3,12 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCartShopping} from '@fortawesome/free-solid-svg-icons'
 import logo from '../assets/img/Logo.png'
 import { Link, useLocation } from 'react-router-dom'
-import Search from './Search.tsx'
+import Search from './Search'
 import { useSelector } from 'react-redux'
+import { RootState } from '../redux/store'
 
 const Header: React.FC = () => {
-  const totalPrice = useSelector((state: any) => state.cartReducer.totalPrice)
-  const location = useLocation()
+   const location = useLocation()
+   const totalPrice = useSelector((state: RootState) => state.cartReducer.totalPrice)
 
   return (
     <div className='header-wrapper'>

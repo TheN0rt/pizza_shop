@@ -3,28 +3,40 @@ import React, { useEffect, useRef, useState } from 'react'
 import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch, useSelector } from 'react-redux'
 import { setSortId } from '../redux/slices/filterSlice'
+import { RootState } from '../redux/store'
 
-const Sort = ({sortList}) => {
+type propsType = {
+   sortList: SortItem[]
+}
+
+type SortItem = {
+   name: string,
+   sortProperty: string,
+   order: string
+ }
+
+const Sort: React.FC<propsType> = ({sortList}) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false)
   const sortRef = useRef(null)
   const dispatch = useDispatch()
-  const sortId = useSelector(state => state.filterReducer.sortId)
+  const sortId = useSelector((state: RootState) => state.filterReducer.sortId)
 
-  const setSortValueHandler = (index) => {
+  const setSortValueHandler = (index:number) => {
    onSortMethodChange(index)
    setIsPopupOpen(false)
   }
 
-  const onSortMethodChange = (index) => {
+  const onSortMethodChange = (index:number) => {
    dispatch(setSortId(index))
  }
 
-  useEffect(() => {
-   const handleClick = (e) => {
-      if(e.target !== sortRef.current){
-         setIsPopupOpen(false)
-      }
-   }
+ 
+ useEffect(() => {
+     const handleClick = (e:MouseEvent) => {
+        if(e.target !== sortRef.current){
+           setIsPopupOpen(false)
+        }
+     }
 
    document.body.addEventListener('click', handleClick)
 
@@ -43,7 +55,7 @@ const Sort = ({sortList}) => {
       {isPopupOpen && (<div className="sort-popup">
          <div className="popup-wrapper">
             <ul>
-               {sortList.map((e, i) => (
+               {sortList.map((e, i:number) => (
                   <li 
                      key={i}
                      className={sortId === i ? 'active' : ''}

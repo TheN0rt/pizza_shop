@@ -1,11 +1,25 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMinus, faPlus, faXmark } from '@fortawesome/free-solid-svg-icons'
-import { useDispatch } from 'react-redux'
 import { removeItem, incrementCount, decrementCount } from '../redux/slices/cartSlice'
+import { useAppDispatch } from '../redux/store'
 
-const CartItemBlock = ({data}) => {
-  const dispatch = useDispatch()
+type propsType = {
+  data: dataType
+}
+
+type dataType = {
+  title: string,
+  imageUrl: string,
+  type: string,
+  size: number,
+  count: number,
+  id: number,
+  price: number
+}
+
+const CartItemBlock:React.FC<propsType> = ({data}) => {
+  const dispatch = useAppDispatch()
 
   return (
     <div className="cart-item">
@@ -17,16 +31,16 @@ const CartItemBlock = ({data}) => {
               </p>
             </div>
             <div className="cart-counter">
-              <div className="minus" onClick={() => dispatch(decrementCount(data.id))}>
+              <div className="minus" onClick={() => dispatch(decrementCount(data))}>
                 <FontAwesomeIcon icon={faMinus} />
               </div>
               <div className="cart-count">{data.count}</div>
-              <div className="plus" onClick={() => dispatch(incrementCount(data.id))}>
+              <div className="plus" onClick={() => dispatch(incrementCount(data))}>
                 <FontAwesomeIcon icon={faPlus} />
               </div>
             </div>
             <p className="price">{data.price * data.count} ₽</p>
-            <div className="cart-delete" onClick={() => dispatch(removeItem(data.id))}>
+            <div className="cart-delete" onClick={() => dispatch(removeItem(data))}>
               <FontAwesomeIcon icon={faXmark} />
             </div>
           </div>

@@ -5,7 +5,7 @@ import styles from './EmptyCart.module.scss'
 import cart from '../../assets/img/cart.png'
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 
-const EmptyCart = () => {
+const EmptyCart: React.FC = () => {
   return (
     <div className={styles.wrapper}>
       <img src={cart} alt="" />
